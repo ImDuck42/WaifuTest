@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - Waifu Gallery">
+    <meta name="theme-color" content="#8c5eff">
+    <title>404 - Page Not Found | Waifu Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        :root {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --accent-primary: #8c5eff;
+            --accent-secondary: #ff67d7;
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8d0;
+            --border-radius: 12px;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .error-container {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .error-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(120deg, var(--accent-primary), var(--accent-secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .error-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .error-image {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+        }
+        
+        .home-btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(120deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(140, 94, 255, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+    <script>
+        // Store the current URL for redirect after handling
+        sessionStorage.redirect = window.location.href;
+        
+        // Extract repository path for GitHub Pages (if any)
+        const pathSegments = window.location.pathname.split('/');
+        const repoPath = pathSegments.length > 1 ? `/${pathSegments[1]}` : '';
+        
+        // Wait for DOM to be fully loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            // Set up the redirect button to go to the correct base path
+            const homeBtn = document.getElementById('homeBtn');
+            if (homeBtn) {
+                homeBtn.href = window.location.origin + repoPath;
+            }
+            
+            // After 5 seconds, automatically redirect to home
+            setTimeout(() => {
+                window.location.replace(window.location.origin + repoPath);
+            }, 5000);
+        });
+    </script>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-title">404</h1>
+        <h2 class="error-subtitle">Page Not Found</h2>
+        <img src="./assets/smthnwrong.png" alt="Error" class="error-image" onerror="this.style.display='none'">
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <p>Redirecting to home page in 5 seconds...</p>
+        <br>
+        <a href="./" class="home-btn" id="homeBtn">Go Home Now</a>
+    </div>
+</body>
+</html>
