@@ -1,5 +1,8 @@
 // Cached DOM elements
-let nsfwToggle, categoryDropdown, waifuContainer, scrollBtn;
+const nsfwToggle = document.getElementById('nsfwToggle');
+const categoryDropdown = document.getElementById('categoryDropdown');
+const waifuContainer = document.getElementById('waifu-container');
+const scrollBtn = document.querySelector('.scroll-top');
 
 // Panel Management
 let basePath = '';
@@ -15,17 +18,12 @@ function scrollToTop() {
 
 // Scroll Button Visibility with Throttling
 let isScrolling;
-function setupScrollButton() {
-    scrollBtn = document.querySelector('.scroll-top');
-    if (!scrollBtn) return;
-    
-    window.addEventListener('scroll', () => {
-        window.clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
-            scrollBtn.classList.toggle('visible', window.scrollY > 300);
-        }, 100);
-    });
-}
+window.addEventListener('scroll', () => {
+    window.clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+        scrollBtn.classList.toggle('visible', window.scrollY > 300);
+    }, 100);
+});
 
 // Category Configuration
 const nsfwCategories = ['waifu', 'neko', 'trap', 'blowjob'];
@@ -52,8 +50,7 @@ function updateURL(type, category) {
 }
 
 function parseURL() {
-    const hashPath = window.location.hash.slice(1); // Use hash-based routing
-    const pathSegments = hashPath.split('/').filter(Boolean);
+    const pathSegments = window.location.pathname.split('/').slice(2);
     return {
         type: pathSegments[0] || '',
         category: pathSegments[1] || ''
@@ -135,7 +132,7 @@ function handleError(error) {
     waifuContainer.innerHTML = `
         <div class="error-container">
             <div class="error-icon">
-                <img src="./assets/smthnwrong.png" alt="Something went wrong">
+                <img src="./assets/smthnwrong.png" alt="Smthnwrong">
             </div>
             <p class="error-text">Failed to generate waifus<br><small>${error.message || 'Unknown error'}</small></p>
             <button class="retry-btn" onclick="fetchAndDisplayWaifus()">
@@ -149,44 +146,26 @@ function handleError(error) {
 }
 
 // Initialization
-function initializeApplication() {
-    // Get DOM elements after document is loaded
-    nsfwToggle = document.getElementById('nsfwToggle');
-    categoryDropdown = document.getElementById('categoryDropdown');
-    waifuContainer = document.getElementById('waifu-container');
-    
-    // Set up the base path for GitHub Pages or other hosting environments
+document.addEventListener('DOMContentLoaded', () => {
     const initialPath = window.location.pathname;
     const pathParts = initialPath.split('/');
     basePath = pathParts[1] ? `/${pathParts[1]}` : '';
 
-    // Handle redirects (for 404 page and hash-based routing)
     if (sessionStorage.redirect) {
         const redirectUrl = new URL(sessionStorage.redirect);
-        const cleanPath = redirectUrl.hash.slice(1); // Use hash instead of pathname
-        window.history.replaceState({}, '', `${basePath}/#${cleanPath}`);
+        const cleanPath = redirectUrl.pathname.replace(new RegExp(`^${basePath}`), '');
+        window.history.replaceState({}, '', `${basePath}${cleanPath}`);
         delete sessionStorage.redirect;
     }
 
-    // Setup event listeners
     if (nsfwToggle) {
         nsfwToggle.addEventListener('change', updateCategories);
     }
-    
-    // Initialize categories dropdown
     updateCategories();
     
-    // Check if URL has valid parameters
     if (!validateAndApplyURLParams()) {
         categoryDropdown.value = '';
     }
     
-    // Setup scroll button
-    setupScrollButton();
-    
-    // Set up history change listener
     window.addEventListener('popstate', validateAndApplyURLParams);
-}
-
-// Run initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeApplication);
+});
