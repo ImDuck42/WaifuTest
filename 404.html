@@ -112,26 +112,12 @@
         }
     </style>
     <script>
-        // Store the current URL for redirect after handling
-        sessionStorage.redirect = window.location.href;
-        
-        // Extract repository path for GitHub Pages (if any)
-        const pathSegments = window.location.pathname.split('/');
-        const repoPath = pathSegments.length > 1 ? `/${pathSegments[1]}` : '';
-        
-        // Wait for DOM to be fully loaded
-        window.addEventListener('DOMContentLoaded', () => {
-            // Set up the redirect button to go to the correct base path
-            const homeBtn = document.getElementById('homeBtn');
-            if (homeBtn) {
-                homeBtn.href = window.location.origin + repoPath;
-            }
-            
-            // After 5 seconds, automatically redirect to home
-            setTimeout(() => {
-                window.location.replace(window.location.origin + repoPath);
-            }, 5000);
-        });
+        // After 5 seconds, automatically redirect to home
+        setTimeout(() => {
+            sessionStorage.redirect = window.location.href;
+            const repoPath = window.location.pathname.split('/').slice(0, 2).join('/');
+            window.location.replace(window.location.origin + repoPath);
+        }, 5000);
     </script>
 </head>
 <body>
