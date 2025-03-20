@@ -52,7 +52,8 @@ function updateURL(type, category) {
 }
 
 function parseURL() {
-    const pathSegments = window.location.pathname.split('/').slice(2);
+    const hashPath = window.location.hash.slice(1); // Use hash-based routing
+    const pathSegments = hashPath.split('/').filter(Boolean);
     return {
         type: pathSegments[0] || '',
         category: pathSegments[1] || ''
@@ -148,26 +149,44 @@ function handleError(error) {
 }
 
 // Initialization
-document.addEventListener('DOMContentLoaded', () => {
+function initializeApplication() {
+    // Get DOM elements after document is loaded
+    nsfwToggle = document.getElementById('nsfwToggle');
+    categoryDropdown = document.getElementById('categoryDropdown');
+    waifuContainer = document.getElementById('waifu-container');
+    
+    // Set up the base path for GitHub Pages or other hosting environments
     const initialPath = window.location.pathname;
     const pathParts = initialPath.split('/');
     basePath = pathParts[1] ? `/${pathParts[1]}` : '';
 
+    // Handle redirects (for 404 page and hash-based routing)
     if (sessionStorage.redirect) {
         const redirectUrl = new URL(sessionStorage.redirect);
-        const cleanPath = redirectUrl.pathname.replace(new RegExp(`^${basePath}`), '');
-        window.history.replaceState({}, '', `${basePath}${cleanPath}`);
+        const cleanPath = redirectUrl.hash.slice(1); // Use hash instead of pathname
+        window.history.replaceState({}, '', `${basePath}/#${cleanPath}`);
         delete sessionStorage.redirect;
     }
 
+    // Setup event listeners
     if (nsfwToggle) {
         nsfwToggle.addEventListener('change', updateCategories);
     }
+    
+    // Initialize categories dropdown
     updateCategories();
     
+    // Check if URL has valid parameters
     if (!validateAndApplyURLParams()) {
         categoryDropdown.value = '';
     }
     
+    // Setup scroll button
+    setupScrollButton();
+    
+    // Set up history change listener
     window.addEventListener('popstate', validateAndApplyURLParams);
-});
+}
+
+// Run initialization when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeApplication);

@@ -112,37 +112,17 @@
         }
     </style>
     <script>
-        // Store the current URL for redirect after handling
-        sessionStorage.redirect = window.location.href;
-        
-        // Extract repository path for GitHub Pages (if any)
-        const pathSegments = window.location.pathname.split('/');
-        const repoPath = pathSegments.length > 1 ? `/${pathSegments[1]}` : '';
-        
-        // Wait for DOM to be fully loaded
-        window.addEventListener('DOMContentLoaded', () => {
-            // Set up the redirect button to go to the correct base path
-            const homeBtn = document.getElementById('homeBtn');
-            if (homeBtn) {
-                homeBtn.href = window.location.origin + repoPath;
-            }
-            
-            // After 5 seconds, automatically redirect to home
-            setTimeout(() => {
-                window.location.replace(window.location.origin + repoPath);
-            }, 5000);
-        });
+        // Redirect to the base path with the current path appended
+        const path = window.location.pathname.replace(/\/$/, '');
+        const basePath = window.location.origin + window.location.pathname.split('/').slice(0, 2).join('/');
+        window.location.replace(`${basePath}/#${path}`);
     </script>
 </head>
 <body>
-    <div class="error-container">
-        <h1 class="error-title">404</h1>
-        <h2 class="error-subtitle">Page Not Found</h2>
-        <img src="./assets/smthnwrong.png" alt="Error" class="error-image" onerror="this.style.display='none'">
-        <p>The page you're looking for doesn't exist or has been moved.</p>
-        <p>Redirecting to home page in 5 seconds...</p>
-        <br>
-        <a href="./" class="home-btn" id="homeBtn">Go Home Now</a>
-    </div>
+    <!-- Optional: Add a fallback message for users without JavaScript -->
+    <noscript>
+        <h1>404 - Page Not Found</h1>
+        <p>JavaScript is required to navigate this site. Please enable JavaScript and try again.</p>
+    </noscript>
 </body>
 </html>
