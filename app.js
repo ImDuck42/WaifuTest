@@ -148,18 +148,11 @@ function handleError(error) {
 }
 
 // Initialization
-function initializeApplication() {
-    // Get DOM elements after document is loaded
-    nsfwToggle = document.getElementById('nsfwToggle');
-    categoryDropdown = document.getElementById('categoryDropdown');
-    waifuContainer = document.getElementById('waifu-container');
-    
-    // Set up the base path for GitHub Pages or other hosting environments
+document.addEventListener('DOMContentLoaded', () => {
     const initialPath = window.location.pathname;
     const pathParts = initialPath.split('/');
     basePath = pathParts[1] ? `/${pathParts[1]}` : '';
 
-    // Handle redirects (for 404 page)
     if (sessionStorage.redirect) {
         const redirectUrl = new URL(sessionStorage.redirect);
         const cleanPath = redirectUrl.pathname.replace(new RegExp(`^${basePath}`), '');
@@ -167,25 +160,14 @@ function initializeApplication() {
         delete sessionStorage.redirect;
     }
 
-    // Setup event listeners
     if (nsfwToggle) {
         nsfwToggle.addEventListener('change', updateCategories);
     }
-    
-    // Initialize categories dropdown
     updateCategories();
     
-    // Check if URL has valid parameters
     if (!validateAndApplyURLParams()) {
         categoryDropdown.value = '';
     }
     
-    // Setup scroll button
-    setupScrollButton();
-    
-    // Set up history change listener
     window.addEventListener('popstate', validateAndApplyURLParams);
-}
-
-// Run initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeApplication);
+});
