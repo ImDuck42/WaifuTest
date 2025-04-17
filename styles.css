@@ -225,6 +225,7 @@ a {
 
 .documentation-btn {
   width: 90%;
+  opacity: 50%;
   padding: 1rem;
   background: linear-gradient(120deg, var(--accent-primary), var(--bg-secondary));
   color: var(--text-primary);
