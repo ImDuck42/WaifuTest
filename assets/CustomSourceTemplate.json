@@ -1,0 +1,48 @@
+{
+    "sourceInfo": [
+        {
+            "title": "Custom Source Template",
+            "description": "A template for creating custom sources",
+            "version": "69.42.0",
+            "author": "ImDuck42(Creator)",
+            "contact": "hu7ao on Discord"
+        }
+    ],
+
+    "sfw": [
+        {
+            "category": "nature",
+            "information": "Natural landscapes and wildlife",
+            "images": [
+                "https://example.com/nature1.mp4",
+                "https://example.com/nature2.jpg"
+            ]
+        },
+        {
+            "category": "anime",
+            "information": "Anime artwork and characters",
+            "images": [
+                "https://example.com/anime1.png",
+                "https://example.com/anime2.webp"
+            ]
+        }
+    ],
+    "nsfw": [
+        {
+            "category": "adult Content",
+            "information": "Explicit adult material",
+            "images": [
+                "https://example.com/nsfw1.jpg",
+                "https://example.com/nsfw2.gif"
+            ]
+        },
+        {
+            "category": "sensitive",
+            "information": "Other sensitive content",
+            "images": [
+                "https://example.com/sensitive1.jpg",
+                "https://example.com/sensitive2.mov"
+            ]
+        }
+    ]
+}

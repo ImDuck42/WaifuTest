@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata and external resources -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Unofficial documentation for the waifu.pics API">
+    <meta name="theme-color" content="#8c5eff">
+    <link rel="icon" type="image/png" href="./../assets/kurukuruAPNG.png">
+    <title>API Documentation | Waifu Gallery</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./stylesdocs.css">
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <h1 class="logo">
+                <a href="./.."><span>✨</span> Waifu Gallery</a>
+            </h1>
+            <!-- Quick navigation links (desktop only) -->
+            <div class="quick-nav">
+                <a href="#available-categories" class="quick-nav-link">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    Categories
+                </a>
+                <a href="#endpoints" class="quick-nav-link">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Endpoints
+                </a>
+                <a href="#implementation-examples" class="quick-nav-link">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Implementation
+                </a>
+                <a href="#custom-source" class="quick-nav-link">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                        <path d="M14 8V2"/>
+                        <path d="M12 18v-6"/>
+                        <path d="M8 15h8"/>
+                    </svg>
+                    Custom Sources
+                </a>
+                <a href="#faq" class="quick-nav-link">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3L12 17"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    FAQ
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="./../contact/indexcontact.html">Contact</a>
+                <a href="#" class="active">API</a>
+                <a href="https://github.com/ImDuck42/Waifu-Gallery" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content container -->
+    <div class="content-container">
+        <!-- Page title -->
+        <h1 class="page-title">API Documentation</h1>
+        
+        <!-- Introduction section -->
+        <div class="docs-intro">
+            <p>The open and supported part of the waifu.pics API is incredibly easy to use. You can find detailed information about how to utilize this in your application below.</p>
+            <p>If you have any issues or questions with the API, please create a <a href="https://github.com/Waifu-pics/waifu-api" target="_blank" style="color: var(--accent-primary); text-decoration: underline;">GitHub issue</a>.</p>
+            <br>
+            <p><strong>Note:</strong> We have switched the API URL to <code>https://api.waifu.pics</code> from <code>https://waifu.pics/api</code>. While the old route still works, you should switch any existing applications to use the newer URL.</p>
+        </div>
+        
+        <!-- Available categories section -->
+        <div class="docs-section" id="available-categories">
+            <h2 class="section-title">
+                <!-- Icon for the section -->
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                Available Categories
+            </h2>
+            <p class="section-description">The API provides various image categories in both SFW (Safe for Work) and NSFW (Not Safe for Work) classifications.</p>
+            
+            <!-- SFW categories card -->
+            <div class="card">
+                <h3 class="card-title">SFW Categories</h3>
+                <div class="category-grid">
+                    <!-- List of SFW categories -->
+                    <div class="category-item">waifu</div>
+                    <div class="category-item">neko</div>
+                    <div class="category-item">shinobu</div>
+                    <div class="category-item">megumin</div>
+                    <div class="category-item">bully</div>
+                    <div class="category-item">cuddle</div>
+                    <div class="category-item">cry</div>
+                    <div class="category-item">hug</div>
+                    <div class="category-item">awoo</div>
+                    <div class="category-item">kiss</div>
+                    <div class="category-item">lick</div>
+                    <div class="category-item">pat</div>
+                    <div class="category-item">smug</div>
+                    <div class="category-item">bonk</div>
+                    <div class="category-item">yeet</div>
+                    <div class="category-item">blush</div>
+                    <div class="category-item">smile</div>
+                    <div class="category-item">wave</div>
+                    <div class="category-item">highfive</div>
+                    <div class="category-item">handhold</div>
+                    <div class="category-item">nom</div>
+                    <div class="category-item">bite</div>
+                    <div class="category-item">glomp</div>
+                    <div class="category-item">slap</div>
+                    <div class="category-item">kill</div>
+                    <div class="category-item">kick</div>
+                    <div class="category-item">happy</div>
+                    <div class="category-item">wink</div>
+                    <div class="category-item">poke</div>
+                    <div class="category-item">dance</div>
+                    <div class="category-item">cringe</div>
+                </div>
+            </div>
+            
+            <!-- NSFW categories card -->
+            <div class="card">
+                <h3 class="card-title">NSFW Categories</h3>
+                <div class="category-grid">
+                    <!-- List of NSFW categories -->
+                    <div class="category-item">waifu</div>
+                    <div class="category-item">neko</div>
+                    <div class="category-item">trap</div>
+                    <div class="category-item">blowjob</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Endpoints section -->
+        <div class="docs-section" id="endpoints">
+            <h2 class="section-title">
+                <!-- Icon for the section -->
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Endpoints
+            </h2>
+            <p class="section-description">The API provides two main endpoints for retrieving waifu images.</p>
+            
+            <!-- Single image endpoint -->
+            <div class="card">
+                <h3 class="card-title">Get Single Image</h3>
+                <p>Receive one random image URL from your endpoint of choice.</p>
+                
+                <!-- Endpoint details -->
+                <div class="endpoint">
+                    <span class="endpoint-url">https://api.waifu.pics/type/category</span>
+                    <span class="endpoint-method get">GET</span>
+                </div>
+                
+                <!-- Parameters table -->
+                <table class="parameter-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>string</td>
+                        <td>The type classification. Valid types are "sfw" and "nsfw".</td>
+                    </tr>
+                    <tr>
+                        <td>category</td>
+                        <td>string</td>
+                        <td>The category of image to retrieve (see available categories above).</td>
+                    </tr>
+                </table>
+                
+                <!-- Example response -->
+                <h4 style="margin-bottom: 0.75rem;">Example Response:</h4>
+                <div class="response-example">{
+  "url": "https://i.waifu.pics/Tj6Wzwo.png"
+}</div>
+                
+                <!-- Tip box -->
+                <div class="tip-box">
+                    <div class="tip-box-title">
+                        <!-- Icon for the tip -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Example Usage
+                    </div>
+                    <p>To get a random SFW "waifu" image: <code>https://api.waifu.pics/sfw/waifu</code></p>
+                </div>
+            </div>
+            
+            <!-- Multiple images endpoint -->
+            <div class="card">
+                <h3 class="card-title">Get Multiple Images</h3>
+                <p>Receive 30 unique images from a specific endpoint or category.</p>
+                
+                <!-- Endpoint details -->
+                <div class="endpoint">
+                    <span class="endpoint-url">https://api.waifu.pics/many/type/category</span>
+                    <span class="endpoint-method post">POST</span>
+                </div>
+                
+                <!-- Parameters table -->
+                <table class="parameter-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>string</td>
+                        <td>The type classification. Valid types are "sfw" and "nsfw".</td>
+                    </tr>
+                    <tr>
+                        <td>category</td>
+                        <td>string</td>
+                        <td>The category of image to retrieve (see available categories above).</td>
+                    </tr>
+                </table>
+                
+                <!-- Example request body -->
+                <h4 style="margin-bottom: 0.75rem; margin-top: 1.5rem;">Request Body:</h4>
+                <table class="parameter-table">
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>exclude</td>
+                        <td>string[]</td>
+                        <td>An array of URLs to exclude from the response (optional).</td>
+                    </tr>
+                </table>
+                
+                <h4 style="margin-bottom: 0.75rem;">Example Request Body:</h4>
+                <div class="response-example">{
+  "exclude": []
+}</div>
+                
+                <!-- Example response -->
+                <h4 style="margin-bottom: 0.75rem;">Example Response:</h4>
+                <div class="response-example">{
+  "files": [
+    "https://i.waifu.pics/qUY7BBo.jpg",
+    "https://i.waifu.pics/zP~YhRb.jpg",
+    "https://i.waifu.pics/Q9ZlB-P.jpg",
+    ...
+  ]
+}</div>
+                
+                <!-- Tip box -->
+                <div class="tip-box">
+                    <div class="tip-box-title">
+                        <!-- Icon for the tip -->
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Tip
+                    </div>
+                    <p>You can use the "exclude" parameter to avoid getting duplicate images when making multiple requests.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Implementation examples section -->
+        <div class="docs-section" id="implementation-examples">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Implementation Examples
+            </h2>
+            <p class="section-description">Here are some examples of how to use the waifu.pics API in different programming languages.</p>
+            
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab active" onclick="changeTab(event, 'javascript')">JavaScript</button>
+                    <button class="tab" onclick="changeTab(event, 'python')">Python</button>
+                </div>
+                
+                <div id="javascript" class="code-example">// Fetch a single image
+fetch('https://api.waifu.pics/sfw/waifu')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.url);
+    // Use the image URL as needed
+  })
+  .catch(error => console.error('Error fetching waifu:', error));
+
+// Fetch multiple images
+fetch('https://api.waifu.pics/many/sfw/waifu', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    exclude: []
+  })
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.files);
+    // Process the array of image URLs
+  })
+  .catch(error => console.error('Error fetching multiple waifus:', error));
+</div>
+                
+                <div id="python" class="code-example" style="display: none;">import requests
+
+# Fetch a single image
+def get_single_waifu(type="sfw", category="waifu"):
+    response = requests.get(f"https://api.waifu.pics/{type}/{category}")
+    if response.status_code == 200:
+        return response.json()["url"]
+    else:
+        return f"Error: {response.status_code}"
+
+# Fetch multiple images
+def get_multiple_waifus(type="sfw", category="waifu", exclude=[]):
+    payload = {"exclude": exclude}
+    response = requests.post(
+        f"https://api.waifu.pics/many/{type}/{category}",
+        json=payload
+    )
+    if response.status_code == 200:
+        return response.json()["files"]
+    else:
+        return f"Error: {response.status_code}"
+
+# Example usage
+single_image = get_single_waifu()
+print(f"Single image: {single_image}")
+
+multiple_images = get_multiple_waifus()
+print(f"Received {len(multiple_images)} images")
+for img in multiple_images[:3]:
+    print(img)  # Print the first 3 images
+</div>
+            </div>
+            
+            <div class="tip-box">
+                <div class="tip-box-title">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    Best Practices
+                </div>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li>Use caching for frequently used images to reduce API calls</li>
+                    <li>Implement error handling in your applications</li>
+                    <li>Consider rate limiting your requests to avoid overloading the servers</li>
+                    <li>For NSFW content, ensure your application has proper age verification</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Custom Source Section -->
+        <div class="docs-section" id="custom-source">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                    <path d="M14 8V2"/>
+                    <path d="M12 18v-6"/>
+                    <path d="M8 15h8"/>
+                </svg>
+                Custom Sources
+            </h2>
+            <p class="section-description">Create and use your own image collections with Waifu Gallery by creating custom source configurations.</p>
+            
+            <!-- Custom Source Introduction -->
+            <div class="card">
+                <h3 class="card-title">What are Custom Sources?</h3>
+                <p>Custom sources allow you to define your own collections of images that can be used with the Waifu Gallery Website. This feature enables you to integrate personal image sets or create specialized categories beyond the default offerings.</p>
+                
+                <p>Custom sources are defined using a JSON template that specifies categories and image URLs in both SFW (Safe for Work) and NSFW (Not Safe for Work) classifications.</p>
+            </div>
+            
+            <!-- Template Structure -->
+            <div class="card">
+                <h3 class="card-title">Custom Source Template</h3>
+                <p>To create a custom source, you'll need to follow the JSON template structure below:</p>
+                
+                <h4 style="margin: 1rem 0 0.5rem 0;">Template Structure:</h4>
+                <div class="response-example">{
+    "sourceInfo": [
+        {
+            "title": "Custom Source Template",
+            "description": "A template for creating custom sources",
+            "version": "69.42.0",
+            "author": "ImDuck42(Creator)",
+            "contact": "hu7ao on Discord"
+        }
+    ],
+
+    "sfw": [
+        {
+            "category": "nature",
+            "information": "Natural landscapes and wildlife",
+            "images": [
+                "https://example.com/nature1.jpg",
+                "https://example.com/nature2.jpg"
+            ]
+        },
+        {
+            "category": "anime",
+            "information": "Anime artwork and characters",
+            "images": [
+                "https://example.com/anime1.png",
+                "https://example.com/anime2.jpg"
+            ]
+        }
+    ],
+    "nsfw": [
+        {
+            "category": "adult content",
+            "information": "Explicit adult material",
+            "images": [
+                "https://example.com/nsfw1.jpg",
+                "https://example.com/nsfw2.png"
+            ]
+        },
+        {
+            "category": "sensitive",
+            "information": "Other sensitive content",
+            "images": [
+                "https://example.com/sensitive1.jpg",
+                "https://example.com/sensitive2.png"
+            ]
+        }
+    ]
+}</div>
+                
+                <div class="tip-box">
+                    <div class="tip-box-title">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Important Note
+                    </div>
+                    <p>Do not change the "sfw", "nsfw" and "sourceInfo" keys in the template. You can leave either section empty (NOT sourceInfo) if you don't have images for that classification (e.g., <code>"sfw": [],</code>), but the keys must remain in the JSON structure.</p>
+                </div>
+            </div>
+            
+            <!-- Field Descriptions -->
+            <div class="card">
+                <h3 class="card-title">Field Descriptions</h3>
+                
+                <table class="parameter-table">
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>title & category</td>
+                        <td>string</td>
+                        <td>Name of your custom source or category</td>
+                    </tr>
+                    <tr>
+                        <td>description & information</td>
+                        <td>string</td>
+                        <td>Optional brief description of your source or category</td>
+                    </tr>
+                    <tr>
+                        <td>version</td>
+                        <td>string</td>
+                        <td>Version number for your source template</td>
+                    </tr>
+                    <tr>
+                        <td>author</td>
+                        <td>string</td>
+                        <td>Your name or identifier</td>
+                    </tr>
+                    <tr>
+                        <td>contact</td>
+                        <td>string</td>
+                        <td>Optional contact information</td>
+                    </tr>
+                    <tr>
+                        <td>images</td>
+                        <td>string[]</td>
+                        <td>Array of direct URLs to your images</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- How to Implement -->
+            <div class="card">
+                <h3 class="card-title">Implementing Custom Sources</h3>
+                <p>To use custom sources with the Waifu Gallery Website, follow these steps:</p>
+                
+                <ol style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>Create your JSON template following the structure above or copy the provided template <a href="./../assets/CustomSourceTemplate.json" target="_blank" style="color: var(--accent-primary); text-decoration: underline;">here</a>.</li>
+                    <li>Host your images on a reliable image hosting service</li>
+                    <li>Ensure all image URLs are direct links to the images themselves</li>
+                    <li>Import the file into your applications sidebar and press Import Source</li>
+                </ol>
+                
+                <div class="tip-box">
+                    <div class="tip-box-title">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Note
+                    </div>
+                    <p>Your imported Sources will be saved in Local Storage. To remove it, either replace it with a different source or press the red X button on the right of the Import button. It will only be clickable if you have contents in your Local Storage</p>
+                </div>
+
+                <h4 style="margin: 1rem 0 0.5rem 0;">Recommended Image Hosts:</h4>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li><a href="https://postimages.org/" target="_blank" style="color: var(--accent-primary); text-decoration: underline;">Postimages.org</a> - Allows for bulk copying direct links to images</li>
+                    <li><a href="https://imgur.com/" target="_blank" style="color: var(--accent-primary); text-decoration: underline;">Imgur</a> - Use direct image links (ending with file extension)</li>
+                    <li><a href="https://catbox.moe/" target="_blank" style="color: var(--accent-primary); text-decoration: underline;">Catbox Moe</a> - Works with direct URL's for videos</li>
+                </ul>
+            </div>
+                        
+            <!-- Best Practices -->
+            <div class="card">
+                <h3 class="card-title">Best Practices</h3>
+                
+                <div class="tip-box">
+                    <div class="tip-box-title">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        Tips for Custom Sources
+                    </div>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                        <li>Use direct image links that end with file extensions (.jpg, .png, .gif, etc.)</li>
+                        <li>Organize your images into clearly defined categories</li>
+                        <li>Keep SFW and NSFW content strictly separated</li>
+                        <li>Regularly check that your image links remain valid</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Troubleshooting -->
+            <div class="card">
+                <h3 class="card-title">Troubleshooting</h3>
+                
+                <table class="parameter-table">
+                    <tr>
+                        <th>Issue</th>
+                        <th>Possible Solution</th>
+                    </tr>
+                    <tr>
+                        <td>Images not loading</td>
+                        <td>Verify that your URLs are direct links to image files. Some hosting services may use indirect links that don't work with the API.</td>
+                    </tr>
+                    <tr>
+                        <td>JSON parse errors</td>
+                        <td>Check your JSON syntax for missing commas, brackets, or quotes. Use a JSON validator to confirm your template is valid.</td>
+                    </tr>
+                    <tr>
+                        <td>Categories not found</td>
+                        <td>Ensure your category names match exactly in your code and in your template (case-sensitive).</td>
+                    </tr>
+                    <tr>
+                        <td>CORS issues</td>
+                        <td>Some image hosts may block cross-origin requests. Choose hosts that allow CORS for API usage.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- FAQ section -->
+        <div class="docs-section" id="faq">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3L12 17"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                FAQ
+            </h2>
+            
+            <div class="card" id="important">
+                <h3 class="card-title">Is this the OFFICIAL Documentation?</h3>
+                <p>NO it is NOT, the ORIGINAL site is</p><a href="https://waifu.pics/docs" target="_blank" style="color: var(--accent-secondary); text-decoration: underline;">Waifu.pics</a>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Can I upload my own Images?</h3>
+                <p><strong>Waifu.pics API:</strong> You can Submit your Images <a href="https://waifu.pics/upload" target="_blank" style="color: var(--accent-primary); text-decoration: underline;">here</a> but from my experience the submit Form doesn't work most of the time.</p>
+                <p><strong>Waifu Gallery Website:</strong> Yes, just use a custom source as described <a href="#custom-source" style="color: var(--accent-primary); text-decoration: underline;">here</a>.</p>
+            </div>
+                        
+            <div class="card">
+                <h3 class="card-title">What are the rate limits?</h3>
+                <p>The API currently does not have strict rate limits, but we ask that you use it responsibly. If you're making a large number of requests, consider implementing your own rate limiting.</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Are there other endpoints for different images?</h3>
+                <p>Currently, the endpoints listed in this documentation are the only supported endpoints. Check the GitHub repository for updates or new features.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Is this site legal outside of planet Earth?</h3>
+                <p>Yes, but only if you have a Martian lawyer to back you up. Otherwise, the interplanetary copyright police might come knocking!</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Social links -->
+            <div class="social-links">
+                <a href="https://github.com/ImDuck42" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <a href="https://github.com/Waifu-pics" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5a3.5 3.5 0 0 0-1-2.5c3.5-.4 7-1.8 7-7.5A5.75 5.75 0 0 0 19.5 4.5c.5-2-1-3.5-1-3.5S17 .5 14 2a13.5 13.5 0 0 0-7 0C4 .5 2.5 1 2.5 1s-1.5 1.5-1 3.5A5.75 5.75 0 0 0 1 10.5c0 5.7 3.5 7.1 7 7.5a3.5 3.5 0 0 0-1 2.5V22M12 22.5a10 10 0 0 0 0-20"></path>
+                    </svg>
+                </a>
+            </div>
+            <!-- Copyright -->
+            <div class="copyright">
+                █ 2025 Waifu Gallery. No rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="./appdocs.js"></script>
+</body>
+</html>
